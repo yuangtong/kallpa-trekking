@@ -124,14 +124,15 @@ function Navbar() {
               >
                 <Search size={isScrolled ? 16 : 20} />
               </button>
-              <button 
+              <Link
+                to="/my-account"
                 className={`text-white/90 hover:text-white transition-all duration-200 ${
                   isScrolled ? 'p-2 rounded-full hover:bg-white/10' : ''
                 }`}
                 aria-label="User account"
               >
                 <User size={isScrolled ? 16 : 20} />
-              </button>
+              </Link>
               <button
                 onClick={() => dispatch({ type: 'TOGGLE_CART' })}
                 className={`relative text-white/90 hover:text-white transition-all duration-200 ${
