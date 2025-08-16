@@ -1,6 +1,7 @@
 import React from 'react';
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { Link } from 'react-router-dom';
 
 function Cart() {
   const { state, dispatch } = useCart();
@@ -27,6 +28,7 @@ function Cart() {
             <button
               onClick={() => dispatch({ type: 'CLOSE_CART' })}
               className="text-[#1E2421] hover:text-[#3D2156] transition-colors"
+              aria-label="Close cart"
             >
               <X size={24} />
             </button>
@@ -70,6 +72,7 @@ function Cart() {
                               payload: { id: itemKey, quantity: item.quantity - 1 }
                             })}
                             className="w-8 h-8 rounded-full bg-[#3D2156]/10 hover:bg-[#3D2156]/20 flex items-center justify-center transition-colors"
+                            aria-label="Decrease quantity"
                           >
                             <Minus size={14} />
                           </button>
@@ -80,6 +83,7 @@ function Cart() {
                               payload: { id: itemKey, quantity: item.quantity + 1 }
                             })}
                             className="w-8 h-8 rounded-full bg-[#3D2156]/10 hover:bg-[#3D2156]/20 flex items-center justify-center transition-colors"
+                            aria-label="Increase quantity"
                           >
                             <Plus size={14} />
                           </button>
@@ -105,9 +109,13 @@ function Cart() {
                 <span className="text-lg font-semibold text-[#1E2421]">Total:</span>
                 <span className="text-2xl font-bold text-[#3D2156]">${state.total.toFixed(2)}</span>
               </div>
-              <button className="w-full bg-[#3D2156] text-white py-3 rounded-lg font-semibold hover:bg-[#3D2156]/90 transition-colors">
+              <Link 
+                to="/checkout"
+                onClick={() => dispatch({ type: 'CLOSE_CART' })}
+                className="block w-full bg-[#3D2156] text-white py-3 rounded-lg font-semibold hover:bg-[#3D2156]/90 transition-colors text-center"
+              >
                 Proceed to Checkout
-              </button>
+              </Link>
             </div>
           )}
         </div>

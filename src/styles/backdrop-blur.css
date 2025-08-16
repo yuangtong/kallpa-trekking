@@ -1,0 +1,15 @@
+/* Backdrop blur utilities */
+.backdrop-blur-custom {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.backdrop-blur-modal {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.backdrop-blur-search {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
