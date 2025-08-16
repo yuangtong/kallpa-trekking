@@ -55,10 +55,10 @@ function ProductListItem({ product }: { product: Product }) {
           </div>
         </div>
 
-        {/* Bottom Row: Price, Colors, and Actions */}
-        <div className="flex items-center justify-between gap-4">
-          {/* Price and Colors */}
-          <div className="flex items-center gap-4">
+        {/* Mobile: Stacked Layout, Desktop: Single Row */}
+        <div className="space-y-3 sm:space-y-0">
+          {/* Price and Colors Row */}
+          <div className="flex items-center justify-between sm:justify-start gap-4">
             <span className="text-2xl font-bold text-[#3D2156]">${product.price}</span>
             <div className="flex gap-1">
               {product.colors.slice(0, 3).map((color, index) => (
@@ -77,18 +77,18 @@ function ProductListItem({ product }: { product: Product }) {
             </div>
           </div>
           
-          {/* Action Buttons */}
-          <div className="flex gap-2">
+          {/* Action Buttons Row */}
+          <div className="flex gap-2 sm:hidden">
             <Link
               to={`/product/${product.id}`}
-              className="bg-[#3D2156] text-white py-2 px-4 rounded-lg font-medium hover:bg-[#3D2156]/90 transition-colors flex items-center gap-2"
+              className="flex-1 bg-[#3D2156] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#3D2156]/90 transition-colors flex items-center justify-center gap-2"
             >
               <ShoppingBag size={16} />
               View More
             </Link>
             <button
               onClick={() => setIsWishlisted(!isWishlisted)}
-              className={`p-2 rounded-lg transition-colors ${
+              className={`p-3 rounded-lg transition-colors ${
                 isWishlisted 
                   ? 'bg-red-500 text-white' 
                   : 'bg-white border border-[#3D2156]/20 text-[#3D2156] hover:bg-[#3D2156]/10'
@@ -98,6 +98,50 @@ function ProductListItem({ product }: { product: Product }) {
             >
               <Heart size={16} className={isWishlisted ? 'fill-current' : ''} />
             </button>
+          </div>
+
+          {/* Desktop: Single Row Layout */}
+          <div className="hidden sm:flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <span className="text-2xl font-bold text-[#3D2156]">${product.price}</span>
+              <div className="flex gap-1">
+                {product.colors.slice(0, 3).map((color, index) => (
+                  <div
+                    key={index}
+                    className={`w-5 h-5 rounded-full border-2 border-white shadow-sm ${
+                      color === 'Deep Purple' ? 'bg-[#3D2156]' :
+                      color === 'Cream' ? 'bg-[#F5F1E7]' :
+                      color === 'Charcoal' ? 'bg-[#1E2421]' :
+                      color === 'Olive' ? 'bg-[#6B7C6E]' :
+                      'bg-gray-300'
+                    }`}
+                    title={color}
+                  />
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex gap-2">
+              <Link
+                to={`/product/${product.id}`}
+                className="bg-[#3D2156] text-white py-2 px-4 rounded-lg font-medium hover:bg-[#3D2156]/90 transition-colors flex items-center gap-2"
+              >
+                <ShoppingBag size={16} />
+                View More
+              </Link>
+              <button
+                onClick={() => setIsWishlisted(!isWishlisted)}
+                className={`p-2 rounded-lg transition-colors ${
+                  isWishlisted 
+                    ? 'bg-red-500 text-white' 
+                    : 'bg-white border border-[#3D2156]/20 text-[#3D2156] hover:bg-[#3D2156]/10'
+                }`}
+                aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+                title={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+              >
+                <Heart size={16} className={isWishlisted ? 'fill-current' : ''} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
