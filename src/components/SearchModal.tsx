@@ -103,14 +103,12 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
     <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh]">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/60"
         onClick={onClose}
-        style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
       />
       
       {/* Modal */}
-      <div className="relative w-full max-w-2xl mx-4 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200"
-           style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}>
+      <div className="relative w-full max-w-2xl mx-4 bg-white rounded-2xl shadow-2xl border border-white/20 overflow-hidden animate-in fade-in slide-in-from-top-4 duration-200">
         
         {/* Search Input */}
         <div className="flex items-center px-6 py-4 border-b border-gray-200/50">

@@ -100,7 +100,7 @@ function Homepage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[60vh]">
             {/* Main Hero Content */}
-            <div className="lg:col-span-2 bg-white/40 backdrop-blur-sm rounded-2xl p-8 border border-white/20 flex flex-col justify-center relative overflow-hidden min-h-[400px]">
+            <div className="lg:col-span-2 bg-white/80 rounded-2xl p-8 border border-white/20 flex flex-col justify-center relative overflow-hidden min-h-[400px]">
               <div className="absolute inset-0 bg-gradient-to-br from-[#3D2156]/5 to-transparent"></div>
               <div className="relative z-10">
                 <h3 className="text-4xl lg:text-5xl font-bold text-[#3D2156] mb-6 leading-tight">
@@ -122,7 +122,7 @@ function Homepage() {
             </div>
 
             {/* Featured Product */}
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 group hover:scale-105 transition-all duration-500 min-h-[400px]">
+            <div className="bg-white/90 rounded-2xl overflow-hidden border border-white/20 group hover:scale-105 transition-all duration-500 min-h-[400px]">
               <div className="h-full flex flex-col">
                 <div className="flex-1 bg-gradient-to-br from-[#6B7C6E]/20 to-[#3D2156]/20 p-6 flex items-center justify-center">
                   <img
@@ -139,14 +139,14 @@ function Homepage() {
             </div>
 
             {/* Sustainability Badge */}
-            <div className="bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-white/20 flex flex-col justify-center items-center text-center hover:scale-105 transition-all duration-300 min-h-[200px]">
+            <div className="bg-white/80 rounded-2xl p-6 border border-white/20 flex flex-col justify-center items-center text-center hover:scale-105 transition-all duration-300 min-h-[200px]">
               <Leaf size={48} className="text-[#6B7C6E] mb-4" />
               <h3 className="font-bold text-[#3D2156] mb-2">95% Sustainable</h3>
               <p className="text-[#1E2421] text-sm">Committed to preserving our planet</p>
             </div>
 
             {/* Heritage Story */}
-            <div className="lg:col-span-2 bg-gradient-to-r from-[#3D2156]/10 to-[#6B7C6E]/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20 flex items-center gap-8 min-h-[200px]">
+            <div className="lg:col-span-2 bg-gradient-to-r from-[#3D2156]/20 to-[#6B7C6E]/20 rounded-2xl p-8 border border-white/20 flex items-center gap-8 min-h-[200px]">
               <div className="flex-1">
                 <h3 className="text-2xl font-bold text-[#3D2156] mb-4">Rooted in the Andes</h3>
                 <p className="text-[#1E2421] leading-relaxed">
@@ -200,7 +200,7 @@ function Homepage() {
       <section className="py-20 bg-gradient-to-br from-[#F5F1E7] to-[#6B7C6E]/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:scale-105 transition-all duration-300">
+            <div className="bg-white/90 rounded-2xl p-8 text-center border border-white/20 hover:scale-105 transition-all duration-300">
               <Shield size={48} className="text-[#3D2156] mx-auto mb-6" />
               <h3 className="text-xl font-bold text-[#3D2156] mb-4">Technical Excellence</h3>
               <p className="text-[#1E2421] leading-relaxed">
@@ -208,7 +208,7 @@ function Homepage() {
               </p>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:scale-105 transition-all duration-300">
+            <div className="bg-white/90 rounded-2xl p-8 text-center border border-white/20 hover:scale-105 transition-all duration-300">
               <Leaf size={48} className="text-[#6B7C6E] mx-auto mb-6" />
               <h3 className="text-xl font-bold text-[#3D2156] mb-4">Sustainable Future</h3>
               <p className="text-[#1E2421] leading-relaxed">
@@ -216,7 +216,7 @@ function Homepage() {
               </p>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:scale-105 transition-all duration-300">
+            <div className="bg-white/90 rounded-2xl p-8 text-center border border-white/20 hover:scale-105 transition-all duration-300">
               <Mountain size={48} className="text-[#6B7C6E] mx-auto mb-6" />
               <h3 className="text-xl font-bold text-[#3D2156] mb-4">Cultural Heritage</h3>
               <p className="text-[#1E2421] leading-relaxed">
@@ -239,7 +239,7 @@ function Homepage() {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`bg-white/40 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:scale-105 transition-all duration-300 ${
+                className={`bg-white/80 rounded-2xl p-6 border border-white/20 hover:scale-105 transition-all duration-300 ${
                   index === 1 ? 'md:mt-8' : index === 2 ? 'md:mt-4' : ''
                 }`}
               >
@@ -270,7 +270,7 @@ function Homepage() {
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#F5F1E7]"
+              className="flex-1 px-6 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#F5F1E7]"
             />
             <button className="bg-[#F5F1E7] text-[#3D2156] px-8 py-3 rounded-lg font-semibold hover:bg-white transition-colors">
               Subscribe

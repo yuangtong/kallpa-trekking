@@ -66,7 +66,7 @@ function ProductDetail() {
           {/* Product Images */}
           <div>
             {/* Main Image */}
-            <div className="aspect-square bg-white/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 mb-4">
+            <div className="aspect-square bg-white/90 rounded-2xl overflow-hidden border border-white/20 mb-4">
               <img
                 src={images[selectedImage]}
                 alt={product.name}
@@ -98,7 +98,7 @@ function ProductDetail() {
 
           {/* Product Info */}
           <div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+            <div className="bg-white/90 rounded-2xl p-8 border border-white/20">
               {/* Header */}
               <div className="mb-6">
                 <div className="flex items-center gap-2 mb-2">

@@ -23,7 +23,7 @@ function Footer() {
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 px-6 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent"
+              className="flex-1 px-6 py-4 rounded-full bg-white/20 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent"
             />
             <button className="px-8 py-4 bg-white text-[#3D2156] rounded-full font-semibold hover:bg-white/90 transition-colors flex items-center justify-center">
               <Mail size={20} className="mr-2" />

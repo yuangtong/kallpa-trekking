@@ -12,12 +12,12 @@ function Cart() {
     <>
       {/* Backdrop */}
       <div 
-        className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50"
+        className="fixed inset-0 bg-black/50 z-50"
         onClick={() => dispatch({ type: 'CLOSE_CART' })}
       />
       
       {/* Cart Sidebar */}
-      <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white/95 backdrop-blur-md shadow-2xl z-50 transform transition-transform duration-300">
+      <div className="fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform transition-transform duration-300">
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-[#3D2156]/10">
@@ -47,7 +47,7 @@ function Cart() {
                 {state.items.map((item) => {
                   const itemKey = `${item.id}-${item.selectedSize}-${item.selectedColor}`;
                   return (
-                    <div key={itemKey} className="bg-white/60 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                    <div key={itemKey} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                       <div className="flex gap-4">
                         <img
                           src={item.image}

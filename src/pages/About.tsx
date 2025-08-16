@@ -37,7 +37,7 @@ function About() {
             {stats.map((stat, index) => (
               <div
                 key={index}
-                className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20 hover:scale-105 transition-all duration-300"
+                className="bg-white/90 rounded-2xl p-6 text-center border border-white/20 hover:scale-105 transition-all duration-300"
               >
                 <stat.icon size={32} className="text-[#3D2156] mx-auto mb-3" />
                 <div className="text-3xl font-bold text-[#3D2156] mb-2">{stat.value}</div>
@@ -77,7 +77,7 @@ function About() {
             </div>
             
             <div className="relative">
-              <div className="bg-white/40 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20">
+              <div className="bg-white/80 rounded-2xl overflow-hidden border border-white/20">
                 <img
                   src="https://images.pexels.com/photos/1374295/pexels-photo-1374295.jpeg"
                   alt="Andean Mountains"
@@ -127,7 +127,7 @@ function About() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/20 text-center">
+            <div className="bg-white/90 rounded-2xl p-6 border border-white/20 text-center">
               <div className="w-16 h-16 bg-[#6B7C6E]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Leaf size={32} className="text-[#6B7C6E]" />
               </div>
@@ -138,7 +138,7 @@ function About() {
               </p>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/20 text-center">
+            <div className="bg-white/90 rounded-2xl p-6 border border-white/20 text-center">
               <div className="w-16 h-16 bg-[#3D2156]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users size={32} className="text-[#3D2156]" />
               </div>
@@ -149,7 +149,7 @@ function About() {
               </p>
             </div>
 
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/20 text-center">
+            <div className="bg-white/90 rounded-2xl p-6 border border-white/20 text-center">
               <div className="w-16 h-16 bg-[#6B7C6E]/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mountain size={32} className="text-[#6B7C6E]" />
               </div>

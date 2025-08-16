@@ -11,7 +11,7 @@ function ProductCard({ product }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   return (
-    <div className="group bg-white/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-500">
+    <div className="group bg-white/90 rounded-2xl overflow-hidden border border-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-500">
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[#F5F1E7] to-[#6B7C6E]/10">
         <img

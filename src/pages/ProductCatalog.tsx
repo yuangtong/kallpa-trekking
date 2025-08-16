@@ -88,7 +88,7 @@ function ProductCatalog() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className="lg:w-1/4">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-white/20 sticky top-24">
+            <div className="bg-white/90 rounded-2xl p-6 border border-white/20 sticky top-24">
               <h3 className="font-bold text-[#3D2156] mb-6 flex items-center gap-2">
                 <Filter size={20} />
                 Filters

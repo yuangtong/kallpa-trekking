@@ -196,7 +196,7 @@ function Navbar() {
                 ? 'bg-white/30 border-white/30' 
                 : 'bg-[#3D2156]/30 border-[#3D2156]/30'
             }`}
-            style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+
           >
             <div className="p-4">
               {/* Navigation Links */}

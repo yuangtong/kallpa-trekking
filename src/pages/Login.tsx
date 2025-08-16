@@ -27,7 +27,7 @@ function Login() {
         </div>
 
         {/* Login Form */}
-        <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
+        <div className="bg-white/90 rounded-2xl p-8 shadow-lg border border-white/20">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <div>
@@ -44,7 +44,7 @@ function Login() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-3 border border-[#E8E2D5] rounded-lg bg-white/50 backdrop-blur-sm placeholder-[#6B7C6E]/60 focus:outline-none focus:ring-2 focus:ring-[#3D2156] focus:border-transparent transition-all duration-200"
+                  className="block w-full pl-10 pr-3 py-3 border border-[#E8E2D5] rounded-lg bg-white placeholder-[#6B7C6E]/60 focus:outline-none focus:ring-2 focus:ring-[#3D2156] focus:border-transparent transition-all duration-200"
                   placeholder="your@email.com"
                   required
                 />
@@ -66,7 +66,7 @@ function Login() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-12 py-3 border border-[#E8E2D5] rounded-lg bg-white/50 backdrop-blur-sm placeholder-[#6B7C6E]/60 focus:outline-none focus:ring-2 focus:ring-[#3D2156] focus:border-transparent transition-all duration-200"
+                  className="block w-full pl-10 pr-12 py-3 border border-[#E8E2D5] rounded-lg bg-white placeholder-[#6B7C6E]/60 focus:outline-none focus:ring-2 focus:ring-[#3D2156] focus:border-transparent transition-all duration-200"
                   placeholder="Your password"
                   required
                 />
