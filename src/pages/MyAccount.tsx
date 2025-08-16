@@ -6,13 +6,13 @@ function MyAccount() {
   const [isEditing, setIsEditing] = useState(false);
 
   const tabs = [
-    { id: 'profile', label: 'Mi Perfil', icon: User },
-    { id: 'orders', label: 'Mis Pedidos', icon: Package },
-    { id: 'wishlist', label: 'Lista de Deseos', icon: Heart },
-    { id: 'addresses', label: 'Direcciones', icon: MapPin },
-    { id: 'payment', label: 'Métodos de Pago', icon: CreditCard },
-    { id: 'notifications', label: 'Notificaciones', icon: Bell },
-    { id: 'security', label: 'Seguridad', icon: Shield },
+    { id: 'profile', label: 'My Profile', icon: User },
+    { id: 'orders', label: 'My Orders', icon: Package },
+    { id: 'wishlist', label: 'Wishlist', icon: Heart },
+    { id: 'addresses', label: 'Addresses', icon: MapPin },
+    { id: 'payment', label: 'Payment Methods', icon: CreditCard },
+    { id: 'notifications', label: 'Notifications', icon: Bell },
+    { id: 'security', label: 'Security', icon: Shield },
   ];
 
   const orders = [
@@ -56,7 +56,7 @@ function MyAccount() {
                   className="flex items-center space-x-2 px-4 py-2 bg-[#3D2156] text-white rounded-lg hover:bg-[#2A1A3E] transition-colors"
                 >
                   <Edit3 size={16} />
-                  <span>{isEditing ? 'Guardar' : 'Editar'}</span>
+                  <span>{isEditing ? 'Save' : 'Edit'}</span>
                 </button>
               </div>
               
@@ -67,29 +67,29 @@ function MyAccount() {
                   </div>
                   <button 
                     className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center text-[#3D2156] hover:bg-gray-50 transition-colors"
-                    aria-label="Cambiar foto de perfil"
-                    title="Cambiar foto de perfil"
+                    aria-label="Change profile photo"
+                    title="Change profile photo"
                   >
                     <Camera size={16} />
                   </button>
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[#3D2156] mb-1">Juan Pérez Delgado</h3>
-                  <p className="text-gray-600">Miembro desde Enero 2024</p>
+                  <p className="text-gray-600">Member since January 2024</p>
                   <div className="flex items-center space-x-2 mt-2">
-                    <span className="px-3 py-1 bg-gradient-to-r from-[#3D2156] to-[#5A3A7A] text-white text-sm rounded-full">Explorador KALLPA</span>
+                    <span className="px-3 py-1 bg-gradient-to-r from-[#3D2156] to-[#5A3A7A] text-white text-sm rounded-full">KALLPA Explorer</span>
                   </div>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Nombre completo</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Full name</label>
                   <input
                     type="text"
                     defaultValue="Juan Pérez Delgado"
                     disabled={!isEditing}
-                    title="Nombre completo"
+                    title="Full name"
                     className="w-full px-4 py-3 border border-[#E8E2D5] rounded-lg focus:ring-2 focus:ring-[#3D2156] focus:border-transparent disabled:bg-gray-50 disabled:text-gray-500"
                   />
                 </div>
@@ -99,27 +99,27 @@ function MyAccount() {
                     type="email"
                     defaultValue="juan.perez@email.com"
                     disabled={!isEditing}
-                    title="Correo electrónico"
+                    title="Email address"
                     className="w-full px-4 py-3 border border-[#E8E2D5] rounded-lg focus:ring-2 focus:ring-[#3D2156] focus:border-transparent disabled:bg-gray-50 disabled:text-gray-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Teléfono</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
                   <input
                     type="tel"
                     defaultValue="+51 987 654 321"
                     disabled={!isEditing}
-                    title="Número de teléfono"
+                    title="Phone number"
                     className="w-full px-4 py-3 border border-[#E8E2D5] rounded-lg focus:ring-2 focus:ring-[#3D2156] focus:border-transparent disabled:bg-gray-50 disabled:text-gray-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Fecha de nacimiento</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Date of birth</label>
                   <input
                     type="date"
                     defaultValue="1990-05-15"
                     disabled={!isEditing}
-                    title="Fecha de nacimiento"
+                    title="Date of birth"
                     className="w-full px-4 py-3 border border-[#E8E2D5] rounded-lg focus:ring-2 focus:ring-[#3D2156] focus:border-transparent disabled:bg-gray-50 disabled:text-gray-500"
                   />
                 </div>
@@ -128,12 +128,12 @@ function MyAccount() {
 
             {/* Preferences */}
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#E8E2D5]">
-              <h3 className="text-xl font-semibold text-[#3D2156] mb-6">Preferencias de Aventura</h3>
+              <h3 className="text-xl font-semibold text-[#3D2156] mb-6">Adventure Preferences</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Actividades favoritas</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Favorite activities</label>
                   <div className="flex flex-wrap gap-2">
-                    {['Trekking', 'Montañismo', 'Camping', 'Escalada'].map((activity) => (
+                    {['Trekking', 'Mountaineering', 'Camping', 'Climbing'].map((activity) => (
                       <span key={activity} className="px-3 py-1 bg-[#F5F1E7] text-[#3D2156] rounded-full text-sm border border-[#E8E2D5]">
                         {activity}
                       </span>
@@ -141,15 +141,15 @@ function MyAccount() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Talla preferida</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Preferred size</label>
                   <select 
                     className="w-full px-4 py-3 border border-[#E8E2D5] rounded-lg focus:ring-2 focus:ring-[#3D2156] focus:border-transparent"
-                    title="Talla preferida"
+                    title="Preferred size"
                   >
-                    <option>M - Mediano</option>
-                    <option>S - Pequeño</option>
-                    <option>L - Grande</option>
-                    <option>XL - Extra Grande</option>
+                    <option>M - Medium</option>
+                    <option>S - Small</option>
+                    <option>L - Large</option>
+                    <option>XL - Extra Large</option>
                   </select>
                 </div>
               </div>
@@ -197,13 +197,13 @@ function MyAccount() {
       case 'wishlist':
         return (
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#E8E2D5]">
-            <h2 className="text-2xl font-bold text-[#3D2156] mb-6">Lista de Deseos</h2>
+            <h2 className="text-2xl font-bold text-[#3D2156] mb-6">Wishlist</h2>
             <div className="text-center py-12">
               <Heart size={48} className="mx-auto text-gray-300 mb-4" />
-              <h3 className="text-lg font-medium text-gray-600 mb-2">Tu lista de deseos está vacía</h3>
-              <p className="text-gray-500 mb-6">Guarda tus productos favoritos para comprarlos más tarde</p>
-              <button className="px-6 py-3 bg-[#3D2156] text-white rounded-lg hover:bg-[#2A1A3E] transition-colors">
-                Explorar productos
+              <h3 className="text-lg font-medium text-gray-600 mb-2">Your wishlist is empty</h3>
+              <p className="text-gray-500 mb-6">Save your favorite products to buy them later</p>
+                  <button className="px-6 py-3 bg-[#3D2156] text-white rounded-lg hover:bg-[#2A1A3E] transition-colors">
+                    Explore products
               </button>
             </div>
           </div>
@@ -213,9 +213,9 @@ function MyAccount() {
         return (
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#E8E2D5]">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[#3D2156]">Direcciones de Envío</h2>
+              <h2 className="text-2xl font-bold text-[#3D2156]">Shipping Addresses</h2>
               <button className="px-4 py-2 bg-[#3D2156] text-white rounded-lg hover:bg-[#2A1A3E] transition-colors">
-                Agregar dirección
+                  Add address
               </button>
             </div>
             <div className="space-y-4">
@@ -233,8 +233,8 @@ function MyAccount() {
                   <div className="flex space-x-2">
                     <button 
                       className="p-2 text-gray-400 hover:text-[#3D2156] transition-colors"
-                      aria-label="Editar dirección"
-                      title="Editar dirección"
+                      aria-label="Edit address"
+                      title="Edit address"
                     >
                       <Edit3 size={16} />
                     </button>
@@ -249,15 +249,15 @@ function MyAccount() {
         return (
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#E8E2D5]">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[#3D2156]">Métodos de Pago</h2>
+              <h2 className="text-2xl font-bold text-[#3D2156]">Payment Methods</h2>
               <button className="px-4 py-2 bg-[#3D2156] text-white rounded-lg hover:bg-[#2A1A3E] transition-colors">
-                Agregar tarjeta
+                  Add card
               </button>
             </div>
             <div className="text-center py-12">
               <CreditCard size={48} className="mx-auto text-gray-300 mb-4" />
-              <h3 className="text-lg font-medium text-gray-600 mb-2">No tienes métodos de pago guardados</h3>
-              <p className="text-gray-500 mb-6">Agrega una tarjeta para hacer compras más rápidas</p>
+              <h3 className="text-lg font-medium text-gray-600 mb-2">You have no saved payment methods</h3>
+              <p className="text-gray-500 mb-6">Add a card to make purchases faster</p>
             </div>
           </div>
         );
@@ -265,13 +265,13 @@ function MyAccount() {
       case 'notifications':
         return (
           <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#E8E2D5]">
-            <h2 className="text-2xl font-bold text-[#3D2156] mb-6">Preferencias de Notificaciones</h2>
-            <div className="space-y-6">
-              {[
-                { title: 'Nuevos productos', desc: 'Recibe notificaciones sobre nuevos lanzamientos' },
-                { title: 'Ofertas especiales', desc: 'Entérate de descuentos y promociones exclusivas' },
-                { title: 'Estado de pedidos', desc: 'Actualizaciones sobre tus compras y envíos' },
-                { title: 'Newsletter KALLPA', desc: 'Historias de aventura y consejos de expertos' }
+            <h2 className="text-2xl font-bold text-[#3D2156] mb-6">Notification Preferences</h2>
+                <div className="space-y-4">
+                  {[
+                    { title: 'New products', desc: 'Receive notifications about new releases' },
+                { title: 'Special offers', desc: 'Get notified about discounts and exclusive promotions' },
+                    { title: 'Order status', desc: 'Updates about your purchases and shipments' },
+                { title: 'Newsletter KALLPA', desc: 'Adventure stories and expert tips' }
               ].map((item, index) => (
                 <div key={index} className="flex items-center justify-between py-4 border-b border-[#E8E2D5] last:border-b-0">
                   <div>
@@ -283,7 +283,7 @@ function MyAccount() {
                       type="checkbox" 
                       className="sr-only peer" 
                       defaultChecked={index < 2}
-                      aria-label={`Activar notificaciones para ${item.title}`}
+                      aria-label={`Enable notifications for ${item.title}`}
                     />
                     <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#3D2156]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#3D2156]"></div>
                   </label>
@@ -297,43 +297,43 @@ function MyAccount() {
         return (
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#E8E2D5]">
-              <h2 className="text-2xl font-bold text-[#3D2156] mb-6">Seguridad de la Cuenta</h2>
+              <h2 className="text-2xl font-bold text-[#3D2156] mb-6">Account Security</h2>
               <div className="space-y-6">
                 <div className="flex items-center justify-between py-4 border-b border-[#E8E2D5]">
                   <div>
-                    <h3 className="font-medium text-[#3D2156]">Cambiar contraseña</h3>
-                    <p className="text-sm text-gray-600">Última actualización: hace 3 meses</p>
+                    <h3 className="font-medium text-[#3D2156]">Change password</h3>
+                    <p className="text-sm text-gray-600">Last updated: 3 months ago</p>
                   </div>
                   <button className="px-4 py-2 border border-[#3D2156] text-[#3D2156] rounded-lg hover:bg-[#3D2156] hover:text-white transition-colors">
-                    Cambiar
+                      Change
                   </button>
                 </div>
                 <div className="flex items-center justify-between py-4 border-b border-[#E8E2D5]">
                   <div>
-                    <h3 className="font-medium text-[#3D2156]">Autenticación de dos factores</h3>
-                    <p className="text-sm text-gray-600">Agrega una capa extra de seguridad</p>
+                    <h3 className="font-medium text-[#3D2156]">Two-factor authentication</h3>
+                    <p className="text-sm text-gray-600">Add an extra layer of security</p>
                   </div>
                   <button className="px-4 py-2 bg-[#3D2156] text-white rounded-lg hover:bg-[#2A1A3E] transition-colors">
-                    Activar
+                      Enable
                   </button>
                 </div>
                 <div className="flex items-center justify-between py-4">
                   <div>
-                    <h3 className="font-medium text-[#3D2156]">Sesiones activas</h3>
-                    <p className="text-sm text-gray-600">Gestiona dónde has iniciado sesión</p>
+                    <h3 className="font-medium text-[#3D2156]">Active sessions</h3>
+                    <p className="text-sm text-gray-600">Manage where you've signed in</p>
                   </div>
                   <button className="px-4 py-2 border border-[#3D2156] text-[#3D2156] rounded-lg hover:bg-[#3D2156] hover:text-white transition-colors">
-                    Ver sesiones
+                      View sessions
                   </button>
                 </div>
               </div>
             </div>
             
             <div className="bg-red-50 border border-red-200 rounded-2xl p-8">
-              <h3 className="text-lg font-semibold text-red-800 mb-4">Zona de Peligro</h3>
-              <p className="text-red-700 mb-4">Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, ten cuidado.</p>
+              <h3 className="text-lg font-semibold text-red-800 mb-4">Danger Zone</h3>
+                  <p className="text-red-700 mb-4">Once you delete your account, there is no going back. Please be certain.</p>
               <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-                Eliminar cuenta
+                    Delete account
               </button>
             </div>
           </div>
@@ -391,7 +391,7 @@ function MyAccount() {
                 <div className="border-t border-[#E8E2D5] mt-2 pt-2">
                   <button className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left text-red-600 hover:bg-red-50 transition-colors">
                     <LogOut size={18} />
-                    <span className="font-medium">Cerrar Sesión</span>
+                    <span className="font-medium">Sign Out</span>
                   </button>
                 </div>
               </nav>
