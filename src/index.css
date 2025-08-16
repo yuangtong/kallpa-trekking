@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+/* Glass morphism utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Full-screen hero scroll snap */
+.hero-section {
+  scroll-snap-align: start;
+}
+
+/* Smooth scroll container */
+body {
+  scroll-snap-type: y proximity;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(61, 33, 86, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(61, 33, 86, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(61, 33, 86, 0.5);
+}
+
+/* Focus styles */
+button:focus,
+input:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(61, 33, 86, 0.1);
+}
+
+/* Hover effects for cards */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(61, 33, 86, 0.15);
+}
+
+/* Typography improvements */
+body {
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1, 'pnum' 1, 'tnum' 0, 'onum' 1, 'lnum' 0, 'dlig' 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Improved button styles */
+.btn-primary {
+  @apply bg-[#3D2156] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#3D2156]/90 transition-all duration-300 hover:scale-105 active:scale-95;
+}
+
+.btn-secondary {
+  @apply border-2 border-[#3D2156] text-[#3D2156] font-semibold py-3 px-6 rounded-lg hover:bg-[#3D2156] hover:text-white transition-all duration-300;
+}
+
+/* Loading animations */
+.loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .text-responsive {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+}
