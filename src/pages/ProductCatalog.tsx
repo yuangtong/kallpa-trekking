@@ -105,6 +105,7 @@ function ProductCatalog() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search products..."
                     className="w-full pl-10 pr-4 py-3 rounded-lg border border-[#3D2156]/20 focus:outline-none focus:ring-2 focus:ring-[#3D2156]/20 bg-white/80"
+                    aria-label="Search products"
                   />
                 </div>
               </div>
@@ -141,6 +142,7 @@ function ProductCatalog() {
                     onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
                     className="w-full px-3 py-2 rounded-lg border border-[#3D2156]/20 focus:outline-none focus:ring-2 focus:ring-[#3D2156]/20 bg-white/80"
                     min="0"
+                    aria-label="Minimum price"
                   />
                   <input
                     type="number"
@@ -148,6 +150,7 @@ function ProductCatalog() {
                     onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
                     className="w-full px-3 py-2 rounded-lg border border-[#3D2156]/20 focus:outline-none focus:ring-2 focus:ring-[#3D2156]/20 bg-white/80"
                     min="0"
+                    aria-label="Maximum price"
                   />
                 </div>
               </div>
@@ -163,6 +166,7 @@ function ProductCatalog() {
                         checked={selectedMaterials.includes(material)}
                         onChange={() => toggleMaterial(material)}
                         className="rounded border-[#3D2156]/20 text-[#3D2156] focus:ring-[#3D2156]/20"
+                        aria-label={`Filter by ${material}`}
                       />
                       <span className="text-[#1E2421] text-sm">{material}</span>
                     </label>
@@ -185,6 +189,8 @@ function ProductCatalog() {
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
                   className="px-4 py-2 rounded-lg border border-[#3D2156]/20 focus:outline-none focus:ring-2 focus:ring-[#3D2156]/20 bg-white/80"
+                  aria-label="Sort products by"
+                  title="Sort products by"
                 >
                   <option value="name">Sort by Name</option>
                   <option value="price-low">Price: Low to High</option>
@@ -198,6 +204,8 @@ function ProductCatalog() {
                     className={`p-2 transition-colors ${
                       viewMode === 'grid' ? 'bg-[#3D2156] text-white' : 'bg-white/80 text-[#3D2156]'
                     }`}
+                    aria-label="Grid view"
+                    title="Grid view"
                   >
                     <Grid size={16} />
                   </button>
@@ -206,6 +214,8 @@ function ProductCatalog() {
                     className={`p-2 transition-colors ${
                       viewMode === 'list' ? 'bg-[#3D2156] text-white' : 'bg-white/80 text-[#3D2156]'
                     }`}
+                    aria-label="List view"
+                    title="List view"
                   >
                     <List size={16} />
                   </button>

@@ -37,6 +37,8 @@ function ProductCard({ product }: ProductCardProps) {
                   ? 'bg-red-500 text-white' 
                   : 'bg-white/80 text-[#3D2156] hover:bg-white'
               }`}
+              aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+              title={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
             >
               <Heart size={16} className={isWishlisted ? 'fill-current' : ''} />
             </button>

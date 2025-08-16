@@ -187,6 +187,8 @@ function ProductDetail() {
                       ? 'border-red-500 bg-red-500 text-white' 
                       : 'border-[#3D2156]/20 text-[#3D2156] hover:border-[#3D2156]/50'
                   }`}
+                  aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+                  title={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
                 >
                   <Heart size={20} className={isWishlisted ? 'fill-current' : ''} />
                 </button>
