@@ -1,18 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
-      backdropBlur: {
-        'xs': '2px',
-        'sm': '4px',
-        'md': '8px',
-        'lg': '12px',
-        'xl': '16px',
-        '2xl': '24px',
-        '3xl': '32px',
-      }
-    },
-  },
-  plugins: [],
-};
+      animation: {
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': 

@@ -11,7 +11,7 @@ function ProductCard({ product }: ProductCardProps) {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   return (
-    <div className="group bg-white/90 rounded-2xl overflow-hidden border border-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-500">
+    <div className="group bg-white/90 rounded-2xl overflow-hidden border border-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-500 h-full flex flex-col">
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[#F5F1E7] to-[#6B7C6E]/10">
         <img
@@ -53,14 +53,14 @@ function ProductCard({ product }: ProductCardProps) {
       </div>
 
       {/* Product Info */}
-      <div className="p-6">
+      <div className="p-6 flex-1 flex flex-col">
         <div className="mb-2">
           <span className="text-[#6B7C6E] text-sm font-medium">{product.category}</span>
         </div>
-        <h3 className="font-bold text-[#3D2156] text-lg mb-2 group-hover:text-[#3D2156]/80 transition-colors">
+        <h3 className="font-bold text-[#3D2156] text-lg mb-2 group-hover:text-[#3D2156]/80 transition-colors line-clamp-2">
           {product.name}
         </h3>
-        <p className="text-[#1E2421] text-sm mb-4 line-clamp-2">
+        <p className="text-[#1E2421] text-sm mb-4 line-clamp-3 flex-1">
           {product.description}
         </p>
         
@@ -77,7 +77,7 @@ function ProductCard({ product }: ProductCardProps) {
         </div>
 
         {/* Price */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto">
           <span className="text-2xl font-bold text-[#3D2156]">${product.price}</span>
           <div className="flex gap-1">
             {product.colors.slice(0, 3).map((color, index) => (

@@ -229,7 +229,7 @@ function ProductCatalog() {
                 <p className="text-[#6B7C6E] text-lg">No products found matching your filters.</p>
               </div>
             ) : (
-              <div className={`grid gap-6 ${
+              <div className={`grid gap-6 items-stretch ${
                 viewMode === 'grid' 
                   ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' 
                   : 'grid-cols-1'
