@@ -1,7 +1,109 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Filter, Grid, List, Search, X, SlidersHorizontal } from 'lucide-react';
+import { Filter, Grid, List, Search, X, SlidersHorizontal, Heart, ShoppingBag, Leaf } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { products, categories } from '../data/products';
 import ProductCard from '../components/ProductCard';
+import { Product } from '../contexts/CartContext';
+
+// Compact List Item Component for List View
+function ProductListItem({ product }: { product: Product }) {
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  return (
+    <div className="group bg-white/90 rounded-2xl overflow-hidden border border-white/20 hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row">
+      {/* Image Container */}
+      <div className="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden bg-gradient-to-br from-[#F5F1E7] to-[#6B7C6E]/10 flex-shrink-0">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        
+        {/* Sustainability Badge */}
+        <div className="absolute top-3 left-3 bg-[#6B7C6E] text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+          <Leaf size={10} />
+          {product.sustainability}% Sustainable
+        </div>
+      </div>
+
+      {/* Content Container */}
+      <div className="flex-1 p-6 flex flex-col justify-between">
+        <div className="flex-1">
+          {/* Category and Title */}
+          <div className="mb-3">
+            <span className="text-[#6B7C6E] text-sm font-medium">{product.category}</span>
+            <h3 className="font-bold text-[#3D2156] text-xl mb-2 group-hover:text-[#3D2156]/80 transition-colors">
+              {product.name}
+            </h3>
+          </div>
+          
+          {/* Description */}
+          <p className="text-[#1E2421] text-sm mb-4 line-clamp-2">
+            {product.description}
+          </p>
+          
+          {/* Features */}
+          <div className="flex flex-wrap gap-1 mb-4">
+            {product.features.slice(0, 3).map((feature, index) => (
+              <span
+                key={index}
+                className="bg-[#3D2156]/10 text-[#3D2156] text-xs px-2 py-1 rounded-full"
+              >
+                {feature}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Row: Price, Colors, and Actions */}
+        <div className="flex items-center justify-between gap-4">
+          {/* Price and Colors */}
+          <div className="flex items-center gap-4">
+            <span className="text-2xl font-bold text-[#3D2156]">${product.price}</span>
+            <div className="flex gap-1">
+              {product.colors.slice(0, 3).map((color, index) => (
+                <div
+                  key={index}
+                  className={`w-5 h-5 rounded-full border-2 border-white shadow-sm ${
+                    color === 'Deep Purple' ? 'bg-[#3D2156]' :
+                    color === 'Cream' ? 'bg-[#F5F1E7]' :
+                    color === 'Charcoal' ? 'bg-[#1E2421]' :
+                    color === 'Olive' ? 'bg-[#6B7C6E]' :
+                    'bg-gray-300'
+                  }`}
+                  title={color}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="flex gap-2">
+            <Link
+              to={`/product/${product.id}`}
+              className="bg-[#3D2156] text-white py-2 px-4 rounded-lg font-medium hover:bg-[#3D2156]/90 transition-colors flex items-center gap-2"
+            >
+              <ShoppingBag size={16} />
+              View More
+            </Link>
+            <button
+              onClick={() => setIsWishlisted(!isWishlisted)}
+              className={`p-2 rounded-lg transition-colors ${
+                isWishlisted 
+                  ? 'bg-red-500 text-white' 
+                  : 'bg-white border border-[#3D2156]/20 text-[#3D2156] hover:bg-[#3D2156]/10'
+              }`}
+              aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+              title={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+            >
+              <Heart size={16} className={isWishlisted ? 'fill-current' : ''} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function ProductCatalog() {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -298,7 +400,7 @@ function ProductCatalog() {
                   {selectedCategory !== 'all' && (
                     <span className="bg-[#3D2156] text-white text-xs px-3 py-1 rounded-full flex items-center gap-1">
                       {categories.find(c => c.slug === selectedCategory)?.name}
-                      <button onClick={() => setSelectedCategory('all')} className="hover:bg-white/20 rounded-full p-0.5">
+                      <button onClick={() => setSelectedCategory('all')} className="hover:bg-white/20 rounded-full p-0.5" title="Remove category filter">
                         <X size={12} />
                       </button>
                     </span>
@@ -306,7 +408,7 @@ function ProductCatalog() {
                   {(priceRange[0] !== 0 || priceRange[1] !== 500) && (
                     <span className="bg-[#3D2156] text-white text-xs px-3 py-1 rounded-full flex items-center gap-1">
                       ${priceRange[0]} - ${priceRange[1]}
-                      <button onClick={() => setPriceRange([0, 500])} className="hover:bg-white/20 rounded-full p-0.5">
+                      <button onClick={() => setPriceRange([0, 500])} className="hover:bg-white/20 rounded-full p-0.5" title="Remove price filter">
                         <X size={12} />
                       </button>
                     </span>
@@ -314,7 +416,7 @@ function ProductCatalog() {
                   {selectedMaterials.map(material => (
                     <span key={material} className="bg-[#3D2156] text-white text-xs px-3 py-1 rounded-full flex items-center gap-1">
                       {material}
-                      <button onClick={() => toggleMaterial(material)} className="hover:bg-white/20 rounded-full p-0.5">
+                      <button onClick={() => toggleMaterial(material)} className="hover:bg-white/20 rounded-full p-0.5" title={`Remove ${material} filter`}>
                         <X size={12} />
                       </button>
                     </span>
@@ -322,7 +424,7 @@ function ProductCatalog() {
                   {searchTerm && (
                     <span className="bg-[#3D2156] text-white text-xs px-3 py-1 rounded-full flex items-center gap-1">
                       "{searchTerm}"
-                      <button onClick={() => setSearchTerm('')} className="hover:bg-white/20 rounded-full p-0.5">
+                      <button onClick={() => setSearchTerm('')} className="hover:bg-white/20 rounded-full p-0.5" title="Clear search">
                         <X size={12} />
                       </button>
                     </span>
@@ -382,7 +484,7 @@ function ProductCatalog() {
               </div>
             </div>
 
-            {/* Product Grid */}
+            {/* Product Grid/List */}
             {filteredProducts.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-[#6B7C6E] text-lg">No products found matching your filters.</p>
@@ -399,7 +501,11 @@ function ProductCatalog() {
                     className="opacity-0 animate-fade-in"
                     style={{ animationDelay: `${index * 0.05}s`, animationFillMode: 'forwards' }}
                   >
-                    <ProductCard product={product} />
+                    {viewMode === 'grid' ? (
+                      <ProductCard product={product} />
+                    ) : (
+                      <ProductListItem product={product} />
+                    )}
                   </div>
                 ))}
               </div>
