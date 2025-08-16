@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Leaf, Shield, Mountain, Star } from 'lucide-react';
+import { ArrowRight, Leaf, Shield, Mountain, Star, ChevronDown } from 'lucide-react';
 import { featuredProducts } from '../data/products';
 import ProductCard from '../components/ProductCard';
+import heroImage from '../assets/images/ChatGPT Image Aug 16, 2025, 01_52_04 AM.png';
 
 function Homepage() {
   const testimonials = [
@@ -27,14 +28,14 @@ function Homepage() {
   ];
 
   return (
-    <div className="pt-16">
+    <div>
       {/* Full-Screen Hero Section */}
       <section className="h-screen relative overflow-hidden">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: 'url(https://images.pexels.com/photos/1374295/pexels-photo-1374295.jpeg)',
+            backgroundImage: `url(${heroImage})`,
           }}
         >
           {/* Overlay */}
@@ -74,12 +75,7 @@ function Homepage() {
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-[#F5F1E7] animate-bounce">
-          <div className="flex flex-col items-center">
-            <span className="text-sm mb-2">Scroll to explore</span>
-            <div className="w-6 h-10 border-2 border-[#F5F1E7] rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-[#F5F1E7] rounded-full mt-2 animate-pulse"></div>
-            </div>
-          </div>
+          <ChevronDown size={32} className="opacity-80" />
         </div>
       </section>
 
