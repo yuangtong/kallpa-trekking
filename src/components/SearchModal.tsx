@@ -21,7 +21,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
     { name: 'Acerca de', path: '/about', description: 'Conoce más sobre KALLPA' },
   ];
 
-  // Buscar en productos y páginas
+  // Search in products and pages
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
@@ -118,7 +118,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
           <input
             ref={inputRef}
             type="text"
-            placeholder="Buscar productos, páginas..."
+            placeholder="Search products, pages..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="flex-1 bg-transparent border-none outline-none text-gray-900 placeholder-gray-500 text-lg"

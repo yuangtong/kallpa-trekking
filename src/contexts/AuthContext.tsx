@@ -15,7 +15,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // Por defecto autenticado
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Por defecto autenticado para mostrar perfil completo
   const [user, setUser] = useState<{
     name: string;
     email: string;
@@ -24,8 +24,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   } | null>({
     name: 'Juan Pérez Delgado',
     email: 'juan.perez@email.com',
-    memberSince: 'Enero 2024',
-    level: 'Explorador KALLPA'
+    memberSince: 'January 2024',
+    level: 'KALLPA Explorer'
   });
 
   const login = (email: string, password: string) => {
@@ -34,8 +34,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser({
       name: 'Juan Pérez Delgado',
       email: email,
-      memberSince: 'Enero 2024',
-      level: 'Explorador KALLPA'
+      memberSince: 'January 2024',
+      level: 'KALLPA Explorer'
     });
   };
 

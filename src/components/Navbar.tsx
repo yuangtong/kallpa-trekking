@@ -234,7 +234,7 @@ function Navbar() {
                   }`}
                 >
                   <Search size={18} />
-                  <span className="text-white/90 text-sm">Buscar</span>
+                  <span className="text-white/90 text-sm">Search</span>
                 </button>
                 <Link 
                   to="/my-account"
@@ -246,7 +246,7 @@ function Navbar() {
                   }`}
                 >
                   <User size={18} />
-                  <span className="text-white/90 text-sm">Cuenta</span>
+                  <span className="text-white/90 text-sm">Account</span>
                 </Link>
               </div>
             </div>

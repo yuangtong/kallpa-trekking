@@ -23,7 +23,7 @@ function Login() {
         {/* Header */}
         <div className="text-center">
           <h2 className="text-4xl font-bold text-[#3D2156] mb-2">Welcome</h2>
-          <p className="text-[#6B7C6E] text-lg">Sign in to your KALLPA account</p>
+          <p className="text-[#3D2156]/70 text-lg">Sign in to your KALLPA account</p>
         </div>
 
         {/* Login Form */}
@@ -32,7 +32,7 @@ function Login() {
             {/* Email Field */}
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-[#3D2156] mb-2">
-                Email Address
+                Email address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -107,7 +107,7 @@ function Login() {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-[#3D2156] to-[#5A3A7A] hover:from-[#3D2156]/90 hover:to-[#5A3A7A]/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3D2156] transition-all duration-200 hover:scale-105"
+              className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-gradient-to-r from-[#3D2156] to-[#5A3A7A] hover:from-[#2A1A3E] hover:to-[#4A2D68] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3D2156] transition-all duration-200 hover:scale-105"
             >
               Sign In
             </button>
