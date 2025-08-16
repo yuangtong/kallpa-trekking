@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ShoppingBag, Search, User } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
@@ -87,7 +87,7 @@ function Navbar() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center flex-1 justify-center">
               <div className={`flex items-center transition-all duration-500 ${
-                isScrolled ? 'space-x-6' : 'space-x-8'
+                isScrolled ? 'space-x-6 ml-8' : 'space-x-8 ml-12'
               }`}>
                 {navLinks.map((link) => (
                   <Link
