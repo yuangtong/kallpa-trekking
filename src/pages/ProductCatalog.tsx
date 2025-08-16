@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Filter, Grid, List, Search } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Filter, Grid, List, Search, X, SlidersHorizontal } from 'lucide-react';
 import { products, categories } from '../data/products';
 import ProductCard from '../components/ProductCard';
 
@@ -10,6 +10,7 @@ function ProductCatalog() {
   const [sortBy, setSortBy] = useState('name');
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
 
   const materials = ['Alpaca fiber', 'Recycled polyester', 'Merino wool', 'Organic cotton'];
 
@@ -29,7 +30,7 @@ function ProductCatalog() {
       if (selectedMaterials.length > 0) {
         const hasSelectedMaterial = selectedMaterials.some(material =>
           product.materials.some(productMaterial =>
-            productMaterial.toLowerCase().includes(material.toLowerCase())
+            productMaterial.toLowerCase().indexOf(material.toLowerCase()) !== -1
           )
         );
         if (!hasSelectedMaterial) return false;
@@ -39,9 +40,9 @@ function ProductCatalog() {
       if (searchTerm) {
         const searchLower = searchTerm.toLowerCase();
         return (
-          product.name.toLowerCase().includes(searchLower) ||
-          product.description.toLowerCase().includes(searchLower) ||
-          product.features.some(feature => feature.toLowerCase().includes(searchLower))
+          product.name.toLowerCase().indexOf(searchLower) !== -1 ||
+          product.description.toLowerCase().indexOf(searchLower) !== -1 ||
+          product.features.some(feature => feature.toLowerCase().indexOf(searchLower) !== -1)
         );
       }
 
@@ -74,6 +75,45 @@ function ProductCatalog() {
     );
   };
 
+  const getActiveFiltersCount = () => {
+    let count = 0;
+    if (selectedCategory !== 'all') count++;
+    if (priceRange[0] !== 0 || priceRange[1] !== 500) count++;
+    if (selectedMaterials.length > 0) count++;
+    if (searchTerm) count++;
+    return count;
+  };
+
+  const clearAllFilters = () => {
+    setSelectedCategory('all');
+    setPriceRange([0, 500]);
+    setSelectedMaterials([]);
+    setSearchTerm('');
+  };
+
+  // Close drawer on escape key
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsFilterDrawerOpen(false);
+      }
+    };
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  // Prevent body scroll when drawer is open
+  useEffect(() => {
+    if (isFilterDrawerOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isFilterDrawerOpen]);
+
   return (
     <div className="pt-16 min-h-screen bg-[#F5F1E7]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -85,9 +125,65 @@ function ProductCatalog() {
           </p>
         </div>
 
+        {/* Active Filters Summary - Mobile */}
+        {getActiveFiltersCount() > 0 && (
+          <div className="lg:hidden mb-6">
+            <div className="flex flex-wrap gap-2">
+              {selectedCategory !== 'all' && (
+                <div className="flex items-center gap-1 bg-[#3D2156]/10 text-[#3D2156] px-3 py-1 rounded-full text-sm">
+                  <span>{categories.find(c => c.slug === selectedCategory)?.name}</span>
+                  <button
+                    onClick={() => setSelectedCategory('all')}
+                    className="ml-1 hover:bg-[#3D2156]/20 rounded-full p-0.5"
+                    aria-label={`Remove ${categories.find(c => c.slug === selectedCategory)?.name} filter`}
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
+              )}
+              {(priceRange[0] > 0 || priceRange[1] < 500) && (
+                <div className="flex items-center gap-1 bg-[#3D2156]/10 text-[#3D2156] px-3 py-1 rounded-full text-sm">
+                  <span>${priceRange[0]} - ${priceRange[1]}</span>
+                  <button
+                    onClick={() => setPriceRange([0, 500])}
+                    className="ml-1 hover:bg-[#3D2156]/20 rounded-full p-0.5"
+                    aria-label="Remove price range filter"
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
+              )}
+              {selectedMaterials.map((material) => (
+                <div key={material} className="flex items-center gap-1 bg-[#3D2156]/10 text-[#3D2156] px-3 py-1 rounded-full text-sm">
+                  <span>{material}</span>
+                  <button
+                    onClick={() => toggleMaterial(material)}
+                    className="ml-1 hover:bg-[#3D2156]/20 rounded-full p-0.5"
+                    aria-label={`Remove ${material} filter`}
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
+              ))}
+              {searchTerm && (
+                <div className="flex items-center gap-1 bg-[#3D2156]/10 text-[#3D2156] px-3 py-1 rounded-full text-sm">
+                  <span>Search: "{searchTerm}"</span>
+                  <button
+                    onClick={() => setSearchTerm('')}
+                    className="ml-1 hover:bg-[#3D2156]/20 rounded-full p-0.5"
+                    aria-label="Clear search"
+                  >
+                    <X size={12} />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Filters Sidebar */}
-          <div className="lg:w-1/4">
+          {/* Desktop Filters Sidebar - Hidden on mobile */}
+          <div className="hidden lg:block lg:w-1/4">
             <div className="bg-white/90 rounded-2xl p-6 border border-white/20 sticky top-24">
               <h3 className="font-bold text-[#3D2156] mb-6 flex items-center gap-2">
                 <Filter size={20} />
@@ -178,6 +274,69 @@ function ProductCatalog() {
 
           {/* Products */}
           <div className="lg:w-3/4">
+            {/* Mobile Filter Button */}
+            <div className="lg:hidden mb-6">
+              <button
+                onClick={() => setIsFilterDrawerOpen(true)}
+                className="w-full bg-white/90 rounded-2xl p-4 border border-white/20 flex items-center justify-between hover:bg-white transition-colors"
+              >
+                <div className="flex items-center gap-3">
+                  <SlidersHorizontal size={20} className="text-[#3D2156]" />
+                  <span className="font-medium text-[#3D2156]">Filters</span>
+                  {getActiveFiltersCount() > 0 && (
+                    <span className="bg-[#3D2156] text-white text-xs px-2 py-1 rounded-full">
+                      {getActiveFiltersCount()}
+                    </span>
+                  )}
+                </div>
+                <Filter size={16} className="text-[#6B7C6E]" />
+              </button>
+              
+              {/* Active Filters Summary */}
+              {getActiveFiltersCount() > 0 && (
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {selectedCategory !== 'all' && (
+                    <span className="bg-[#3D2156] text-white text-xs px-3 py-1 rounded-full flex items-center gap-1">
+                      {categories.find(c => c.slug === selectedCategory)?.name}
+                      <button onClick={() => setSelectedCategory('all')} className="hover:bg-white/20 rounded-full p-0.5">
+                        <X size={12} />
+                      </button>
+                    </span>
+                  )}
+                  {(priceRange[0] !== 0 || priceRange[1] !== 500) && (
+                    <span className="bg-[#3D2156] text-white text-xs px-3 py-1 rounded-full flex items-center gap-1">
+                      ${priceRange[0]} - ${priceRange[1]}
+                      <button onClick={() => setPriceRange([0, 500])} className="hover:bg-white/20 rounded-full p-0.5">
+                        <X size={12} />
+                      </button>
+                    </span>
+                  )}
+                  {selectedMaterials.map(material => (
+                    <span key={material} className="bg-[#3D2156] text-white text-xs px-3 py-1 rounded-full flex items-center gap-1">
+                      {material}
+                      <button onClick={() => toggleMaterial(material)} className="hover:bg-white/20 rounded-full p-0.5">
+                        <X size={12} />
+                      </button>
+                    </span>
+                  ))}
+                  {searchTerm && (
+                    <span className="bg-[#3D2156] text-white text-xs px-3 py-1 rounded-full flex items-center gap-1">
+                      "{searchTerm}"
+                      <button onClick={() => setSearchTerm('')} className="hover:bg-white/20 rounded-full p-0.5">
+                        <X size={12} />
+                      </button>
+                    </span>
+                  )}
+                  <button
+                    onClick={clearAllFilters}
+                    className="text-[#6B7C6E] text-xs underline hover:text-[#3D2156]"
+                  >
+                    Clear all
+                  </button>
+                </div>
+              )}
+            </div>
+
             {/* Controls */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
               <p className="text-[#6B7C6E]">
@@ -247,6 +406,152 @@ function ProductCatalog() {
             )}
           </div>
         </div>
+
+        {/* Mobile Filter Drawer */}
+        {isFilterDrawerOpen && (
+          <>
+            {/* Backdrop */}
+            <div 
+              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              onClick={() => setIsFilterDrawerOpen(false)}
+            />
+            
+            {/* Drawer */}
+            <div className="fixed inset-x-0 bottom-0 z-50 lg:hidden">
+              <div 
+                className="bg-white rounded-t-3xl max-h-[85vh] overflow-hidden animate-slide-up"
+                style={{
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)'
+                }}
+              >
+                {/* Drawer Header */}
+                <div className="flex items-center justify-between p-6 border-b border-gray-200">
+                  <div className="flex items-center gap-3">
+                    <Filter size={20} className="text-[#3D2156]" />
+                    <h3 className="font-bold text-[#3D2156] text-lg">Filters</h3>
+                    {getActiveFiltersCount() > 0 && (
+                      <span className="bg-[#3D2156] text-white text-xs px-2 py-1 rounded-full">
+                        {getActiveFiltersCount()}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {getActiveFiltersCount() > 0 && (
+                      <button
+                        onClick={clearAllFilters}
+                        className="text-[#6B7C6E] text-sm hover:text-[#3D2156]"
+                        aria-label="Clear all filters"
+                      >
+                        Clear all
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setIsFilterDrawerOpen(false)}
+                      className="p-2 hover:bg-gray-100 rounded-full"
+                      aria-label="Close filters"
+                    >
+                      <X size={20} className="text-[#6B7C6E]" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Drawer Content */}
+                <div className="overflow-y-auto max-h-[calc(85vh-80px)] p-6">
+                  {/* Search */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-[#1E2421] mb-2">Search</label>
+                    <div className="relative">
+                      <Search size={18} className="absolute left-3 top-3 text-[#6B7C6E]" />
+                      <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        placeholder="Search products..."
+                        className="w-full pl-10 pr-4 py-3 rounded-lg border border-[#3D2156]/20 focus:outline-none focus:ring-2 focus:ring-[#3D2156]/20 bg-white/80"
+                        aria-label="Search products"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Categories */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-[#1E2421] mb-3">Category</label>
+                    <div className="space-y-2">
+                      {categories.map((category) => (
+                        <button
+                          key={category.slug}
+                          onClick={() => setSelectedCategory(category.slug)}
+                          className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
+                            selectedCategory === category.slug
+                              ? 'bg-[#3D2156] text-white'
+                              : 'text-[#1E2421] hover:bg-[#3D2156]/10'
+                          }`}
+                        >
+                          {category.name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Price Range */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-[#1E2421] mb-3">
+                      Price Range: ${priceRange[0]} - ${priceRange[1]}
+                    </label>
+                    <div className="flex gap-4">
+                      <input
+                        type="number"
+                        value={priceRange[0]}
+                        onChange={(e) => setPriceRange([Number(e.target.value), priceRange[1]])}
+                        className="w-full px-3 py-2 rounded-lg border border-[#3D2156]/20 focus:outline-none focus:ring-2 focus:ring-[#3D2156]/20 bg-white/80"
+                        min="0"
+                        aria-label="Minimum price"
+                      />
+                      <input
+                        type="number"
+                        value={priceRange[1]}
+                        onChange={(e) => setPriceRange([priceRange[0], Number(e.target.value)])}
+                        className="w-full px-3 py-2 rounded-lg border border-[#3D2156]/20 focus:outline-none focus:ring-2 focus:ring-[#3D2156]/20 bg-white/80"
+                        min="0"
+                        aria-label="Maximum price"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Materials */}
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium text-[#1E2421] mb-3">Materials</label>
+                    <div className="space-y-2">
+                      {materials.map((material) => (
+                        <label key={material} className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            checked={selectedMaterials.includes(material)}
+                            onChange={() => toggleMaterial(material)}
+                            className="rounded border-[#3D2156]/20 text-[#3D2156] focus:ring-[#3D2156]/20"
+                            aria-label={`Filter by ${material}`}
+                          />
+                          <span className="text-[#1E2421] text-sm">{material}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Drawer Footer */}
+                <div className="p-6 border-t border-gray-200 bg-white">
+                  <button
+                    onClick={() => setIsFilterDrawerOpen(false)}
+                    className="w-full bg-[#3D2156] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#3D2156]/90 transition-colors"
+                  >
+                    Show {filteredProducts.length} Products
+                  </button>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
