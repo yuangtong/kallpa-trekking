@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Leaf, Shield, Mountain, Star, ChevronDown } from 'lucide-react';
 import { featuredProducts } from '../data/products';
 import ProductCard from '../components/ProductCard';
-import heroImage from '../assets/images/ChatGPT Image Aug 16, 2025, 01_52_04 AM.png';
+import heroImage from '../assets/images/hero-background.png';
 
 function Homepage() {
   const testimonials = [
