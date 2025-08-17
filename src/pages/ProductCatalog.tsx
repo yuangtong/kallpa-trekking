@@ -55,10 +55,10 @@ function ProductListItem({ product }: { product: Product }) {
           </div>
         </div>
 
-        {/* Mobile: Stacked Layout, Desktop: Single Row */}
+        {/* Mobile: Price and Colors, then Action Buttons; Desktop: Price, Colors and Actions */}
         <div className="space-y-3 sm:space-y-0">
-          {/* Price and Colors Row */}
-          <div className="flex items-center justify-between sm:justify-start gap-4">
+          {/* Mobile: Price and Colors Row */}
+          <div className="flex items-center justify-between gap-4 sm:hidden">
             <span className="text-2xl font-bold text-[#3D2156]">${product.price}</span>
             <div className="flex gap-1">
               {product.colors.slice(0, 3).map((color, index) => (
@@ -77,7 +77,7 @@ function ProductListItem({ product }: { product: Product }) {
             </div>
           </div>
           
-          {/* Action Buttons Row */}
+          {/* Mobile Action Buttons Row */}
           <div className="flex gap-2 sm:hidden">
             <Link
               to={`/product/${product.id}`}
