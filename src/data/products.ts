@@ -5,7 +5,12 @@ export const products: Product[] = [
     id: '1',
     name: 'Andean Storm Shell',
     price: 485,
-    image: 'https://images.pexels.com/photos/1374295/pexels-photo-1374295.jpeg?auto=compress&cs=tinysrgb&w=500&h=600&fit=crop',
+    image: '/src/assets/images/Andean Storm Shell - Charcoal.png',
+    images: {
+      'Deep Purple': '/src/assets/images/Andean Storm Shell - Deep Purple.png',
+      'Charcoal': '/src/assets/images/Andean Storm Shell - Charcoal.png',
+      'Olive': '/src/assets/images/Andean Storm Shell - Olive.png'
+    },
     category: 'Jackets',
     description: 'Premium technical shell jacket combining traditional alpaca fiber with cutting-edge waterproof technology. Inspired by the resilience of Andean peaks.',
     features: ['3-layer waterproof', 'Alpaca fiber blend', 'Reflective accents', 'Ventilation system'],
@@ -18,7 +23,12 @@ export const products: Product[] = [
     id: '2',
     name: 'Machu Picchu Mid-Layer',
     price: 225,
-    image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=500&h=600&fit=crop',
+    image: '/src/assets/images/Machu Picchu Mid-Layer - Charcoal.png',
+    images: {
+      'Cream': '/src/assets/images/Machu Picchu Mid-Layer - Cream.png',
+      'Charcoal': '/src/assets/images/Machu Picchu Mid-Layer - Charcoal.png',
+      'Deep Purple': '/src/assets/images/Machu Picchu Mid-Layer - Deep Purple.png'
+    },
     category: 'Mid-layers',
     description: 'Luxurious alpaca-blend insulation layer that adapts to temperature changes like the ancient terraces of Machu Picchu.',
     features: ['Temperature regulation', 'Moisture-wicking', 'Anti-odor treatment', 'Packable design'],
@@ -31,7 +41,11 @@ export const products: Product[] = [
     id: '3',
     name: 'Inca Base Layer',
     price: 125,
-    image: 'https://images.pexels.com/photos/1374295/pexels-photo-1374295.jpeg?auto=compress&cs=tinysrgb&w=500&h=600&fit=crop',
+    image: '/src/assets/images/Inca Base Layer - Charcoal.png',
+    images: {
+      'Cream': '/src/assets/images/Inca Base Layer - Cream.png',
+      'Charcoal': '/src/assets/images/Inca Base Layer - Charcoal.png'
+    },
     category: 'Base layers',
     description: 'Foundation layer crafted from the finest alpaca fiber, providing unmatched comfort and temperature regulation.',
     features: ['Seamless construction', 'Natural antimicrobial', 'UV protection', 'Quick-dry'],
@@ -44,7 +58,12 @@ export const products: Product[] = [
     id: '4',
     name: 'Condor Trek Pants',
     price: 285,
-    image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=500&h=600&fit=crop',
+    image: '/src/assets/images/Condor Trek Pants - Charcoal.png',
+    images: {
+      'Olive': '/src/assets/images/Condor Trek Pants - Olive.png',
+      'Charcoal': '/src/assets/images/Condor Trek Pants - Charcoal.png',
+      'Deep Purple': '/src/assets/images/Condor Trek Pants - Deep Purple.png'
+    },
     category: 'Pants',
     description: 'Technical trekking pants with the freedom of the Andean condor. Features innovative stretch panels and weather resistance.',
     features: ['4-way stretch', 'Water repellent', 'Reinforced knees', 'Multiple pockets'],
@@ -57,7 +76,11 @@ export const products: Product[] = [
     id: '5',
     name: 'Quechua Safety Module',
     price: 95,
-    image: 'https://images.pexels.com/photos/1374295/pexels-photo-1374295.jpeg?auto=compress&cs=tinysrgb&w=500&h=600&fit=crop',
+    image: '/src/assets/images/Quechua Safety Module - Silver.png',
+    images: {
+      'Silver': '/src/assets/images/Quechua Safety Module - Silver.png',
+      'Orange': '/src/assets/images/Quechua Safety Module - Orange.png'
+    },
     category: 'Accessories',
     description: 'Clip-on safety module with integrated LED and reflective elements. Connects seamlessly to all KALLPA garments.',
     features: ['LED visibility', '360° reflectivity', 'Emergency whistle', 'Weatherproof'],
@@ -70,7 +93,11 @@ export const products: Product[] = [
     id: '6',
     name: 'Alpaca Thermal Gloves',
     price: 85,
-    image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=500&h=600&fit=crop',
+    image: '/src/assets/images/Alpaca Thermal Gloves - Charcoal.png',
+    images: {
+      'Cream': '/src/assets/images/Alpaca Thermal Gloves - Cream.png',
+      'Charcoal': '/src/assets/images/Alpaca Thermal Gloves - Charcoal.png'
+    },
     category: 'Accessories',
     description: 'Luxurious alpaca fiber gloves with touchscreen compatibility and superior warmth retention.',
     features: ['Touchscreen compatible', 'Windproof', 'Moisture-wicking', 'Non-slip grip'],
@@ -78,7 +105,7 @@ export const products: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Cream', 'Charcoal'],
     sustainability: 90,
-  },
+  }
 ];
 
 export const categories = [

@@ -8,14 +8,19 @@ import { Product } from '../contexts/CartContext';
 // Compact List Item Component for List View
 function ProductListItem({ product }: { product: Product }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  
+  const currentImage = product.images && product.images[selectedColor] 
+    ? product.images[selectedColor] 
+    : product.image;
 
   return (
     <div className="group bg-white/90 rounded-2xl overflow-hidden border border-white/20 hover:shadow-xl transition-all duration-300 flex">
       {/* Image Container */}
       <div className="relative w-32 sm:w-48 h-32 sm:h-auto overflow-hidden bg-gradient-to-br from-[#F5F1E7] to-[#6B7C6E]/10 flex-shrink-0">
         <img
-          src={product.image}
-          alt={product.name}
+          src={currentImage}
+          alt={`${product.name} - ${selectedColor}`}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         
@@ -64,20 +69,32 @@ function ProductListItem({ product }: { product: Product }) {
           {/* Price and Colors */}
           <div className="flex items-center gap-2 sm:gap-4">
             <span className="text-lg sm:text-2xl font-bold text-[#3D2156]">${product.price}</span>
-            <div className="flex gap-1">
-              {product.colors.slice(0, 3).map((color, index) => (
-                <div
-                  key={index}
-                  className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-white shadow-sm ${
-                    color === 'Deep Purple' ? 'bg-[#3D2156]' :
-                    color === 'Cream' ? 'bg-[#F5F1E7]' :
-                    color === 'Charcoal' ? 'bg-[#1E2421]' :
-                    color === 'Olive' ? 'bg-[#6B7C6E]' :
-                    'bg-gray-300'
-                  }`}
-                  title={color}
-                />
-              ))}
+            <div className="flex items-center gap-1">
+              <div className="flex gap-1">
+                {product.colors.slice(0, 3).map((color, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedColor(color)}
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 shadow-sm transition-all hover:scale-110 ${
+                      selectedColor === color 
+                        ? 'border-[#3D2156] ring-2 ring-[#3D2156]/30' 
+                        : 'border-white'
+                    } ${
+                      color === 'Deep Purple' ? 'bg-[#3D2156]' :
+                      color === 'Cream' ? 'bg-[#F5F1E7]' :
+                      color === 'Charcoal' ? 'bg-[#1E2421]' :
+                      color === 'Olive' ? 'bg-[#6B7C6E]' :
+                      color === 'Orange' ? 'bg-orange-500' :
+                      color === 'Silver' ? 'bg-gray-300' :
+                      'bg-gray-300'
+                    }`}
+                    title={color}
+                  />
+                ))}
+              </div>
+              {product.colors.length > 3 && (
+                <span className="text-xs text-[#6B7C6E] ml-1">+{product.colors.length - 3}</span>
+              )}
             </div>
           </div>
           
