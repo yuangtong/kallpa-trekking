@@ -10,9 +10,9 @@ function ProductListItem({ product }: { product: Product }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   return (
-    <div className="group bg-white/90 rounded-2xl overflow-hidden border border-white/20 hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row">
+    <div className="group bg-white/90 rounded-2xl overflow-hidden border border-white/20 hover:shadow-xl transition-all duration-300 flex">
       {/* Image Container */}
-      <div className="relative w-full sm:w-48 h-48 sm:h-auto overflow-hidden bg-gradient-to-br from-[#F5F1E7] to-[#6B7C6E]/10 flex-shrink-0">
+      <div className="relative w-32 sm:w-48 h-32 sm:h-auto overflow-hidden bg-gradient-to-br from-[#F5F1E7] to-[#6B7C6E]/10 flex-shrink-0">
         <img
           src={product.image}
           alt={product.name}
@@ -20,51 +20,55 @@ function ProductListItem({ product }: { product: Product }) {
         />
         
         {/* Sustainability Badge */}
-        <div className="absolute top-3 left-3 bg-[#6B7C6E] text-white px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1">
-          <Leaf size={10} />
-          {product.sustainability}% Sustainable
+        <div className="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#6B7C6E] text-white px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-xs font-medium flex items-center gap-1">
+          <Leaf size={8} className="sm:w-2.5 sm:h-2.5" />
+          <span className="hidden sm:inline">{product.sustainability}% Sustainable</span>
+          <span className="sm:hidden">{product.sustainability}%</span>
         </div>
       </div>
 
       {/* Content Container */}
-      <div className="flex-1 p-6 flex flex-col justify-between">
+      <div className="flex-1 p-3 sm:p-6 flex flex-col justify-between">
         <div className="flex-1">
           {/* Category and Title */}
-          <div className="mb-3">
-            <span className="text-[#6B7C6E] text-sm font-medium">{product.category}</span>
-            <h3 className="font-bold text-[#3D2156] text-xl mb-2 group-hover:text-[#3D2156]/80 transition-colors">
+          <div className="mb-2 sm:mb-3">
+            <span className="text-[#6B7C6E] text-xs sm:text-sm font-medium">{product.category}</span>
+            <h3 className="font-bold text-[#3D2156] text-base sm:text-xl mb-1 sm:mb-2 group-hover:text-[#3D2156]/80 transition-colors line-clamp-2">
               {product.name}
             </h3>
           </div>
           
-          {/* Description */}
-          <p className="text-[#1E2421] text-sm mb-4 line-clamp-2">
+          {/* Description - Hidden on mobile for space */}
+          <p className="text-[#1E2421] text-sm mb-4 line-clamp-2 hidden sm:block">
             {product.description}
           </p>
           
           {/* Features */}
-          <div className="flex flex-wrap gap-1 mb-4">
-            {product.features.slice(0, 3).map((feature, index) => (
+          <div className="flex flex-wrap gap-1 mb-2 sm:mb-4">
+            {product.features.slice(0, 2).map((feature, index) => (
               <span
                 key={index}
-                className="bg-[#3D2156]/10 text-[#3D2156] text-xs px-2 py-1 rounded-full"
+                className="bg-[#3D2156]/10 text-[#3D2156] text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full"
               >
                 {feature}
               </span>
             ))}
+            <span className="hidden sm:inline bg-[#3D2156]/10 text-[#3D2156] text-xs px-2 py-1 rounded-full">
+              {product.features[2]}
+            </span>
           </div>
         </div>
 
-        {/* Mobile: Price and Colors, then Action Buttons; Desktop: Price, Colors and Actions */}
-        <div className="space-y-3 sm:space-y-0">
-          {/* Mobile: Price and Colors Row */}
-          <div className="flex items-center justify-between gap-4 sm:hidden">
-            <span className="text-2xl font-bold text-[#3D2156]">${product.price}</span>
+        {/* Mobile and Desktop: Single Row Layout */}
+        <div className="flex items-center justify-between gap-2 sm:gap-4">
+          {/* Price and Colors */}
+          <div className="flex items-center gap-2 sm:gap-4">
+            <span className="text-lg sm:text-2xl font-bold text-[#3D2156]">${product.price}</span>
             <div className="flex gap-1">
               {product.colors.slice(0, 3).map((color, index) => (
                 <div
                   key={index}
-                  className={`w-5 h-5 rounded-full border-2 border-white shadow-sm ${
+                  className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-white shadow-sm ${
                     color === 'Deep Purple' ? 'bg-[#3D2156]' :
                     color === 'Cream' ? 'bg-[#F5F1E7]' :
                     color === 'Charcoal' ? 'bg-[#1E2421]' :
@@ -77,18 +81,19 @@ function ProductListItem({ product }: { product: Product }) {
             </div>
           </div>
           
-          {/* Mobile Action Buttons Row */}
-          <div className="flex gap-2 sm:hidden">
+          {/* Action Buttons */}
+          <div className="flex gap-1 sm:gap-2">
             <Link
               to={`/product/${product.id}`}
-              className="flex-1 bg-[#3D2156] text-white py-3 px-4 rounded-lg font-medium hover:bg-[#3D2156]/90 transition-colors flex items-center justify-center gap-2"
+              className="bg-[#3D2156] text-white py-2 sm:py-2 px-3 sm:px-4 rounded-lg font-medium hover:bg-[#3D2156]/90 transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
             >
-              <ShoppingBag size={16} />
-              View More
+              <ShoppingBag size={14} className="sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">View More</span>
+              <span className="sm:hidden">View</span>
             </Link>
             <button
               onClick={() => setIsWishlisted(!isWishlisted)}
-              className={`p-3 rounded-lg transition-colors ${
+              className={`p-2 rounded-lg transition-colors ${
                 isWishlisted 
                   ? 'bg-red-500 text-white' 
                   : 'bg-white border border-[#3D2156]/20 text-[#3D2156] hover:bg-[#3D2156]/10'
@@ -96,52 +101,8 @@ function ProductListItem({ product }: { product: Product }) {
               aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
               title={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
             >
-              <Heart size={16} className={isWishlisted ? 'fill-current' : ''} />
+              <Heart size={14} className={`sm:w-4 sm:h-4 ${isWishlisted ? 'fill-current' : ''}`} />
             </button>
-          </div>
-
-          {/* Desktop: Single Row Layout */}
-          <div className="hidden sm:flex items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <span className="text-2xl font-bold text-[#3D2156]">${product.price}</span>
-              <div className="flex gap-1">
-                {product.colors.slice(0, 3).map((color, index) => (
-                  <div
-                    key={index}
-                    className={`w-5 h-5 rounded-full border-2 border-white shadow-sm ${
-                      color === 'Deep Purple' ? 'bg-[#3D2156]' :
-                      color === 'Cream' ? 'bg-[#F5F1E7]' :
-                      color === 'Charcoal' ? 'bg-[#1E2421]' :
-                      color === 'Olive' ? 'bg-[#6B7C6E]' :
-                      'bg-gray-300'
-                    }`}
-                    title={color}
-                  />
-                ))}
-              </div>
-            </div>
-            
-            <div className="flex gap-2">
-              <Link
-                to={`/product/${product.id}`}
-                className="bg-[#3D2156] text-white py-2 px-4 rounded-lg font-medium hover:bg-[#3D2156]/90 transition-colors flex items-center gap-2"
-              >
-                <ShoppingBag size={16} />
-                View More
-              </Link>
-              <button
-                onClick={() => setIsWishlisted(!isWishlisted)}
-                className={`p-2 rounded-lg transition-colors ${
-                  isWishlisted 
-                    ? 'bg-red-500 text-white' 
-                    : 'bg-white border border-[#3D2156]/20 text-[#3D2156] hover:bg-[#3D2156]/10'
-                }`}
-                aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-                title={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-              >
-                <Heart size={16} className={isWishlisted ? 'fill-current' : ''} />
-              </button>
-            </div>
           </div>
         </div>
       </div>
