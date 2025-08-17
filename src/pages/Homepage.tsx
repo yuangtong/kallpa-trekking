@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Leaf, Shield, Mountain, Star, ChevronDown } from 'lucide-react';
 import { featuredProducts } from '../data/products';
 import ProductCard from '../components/ProductCard';
-import heroImage from '../assets/images/hero-background.png';
+const heroImage = '/images/hero-background.png';
 
 function Homepage() {
   const testimonials = [
